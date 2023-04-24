@@ -11,23 +11,13 @@ WavFix is a lightweight application designed to fix the Pioneer DJ Error E-8305,
 ## Download
 Compiled executables for MacOS and Windows are [here](https://github.com/Dreamwalkertunes/WavFix/releases/tag/v1.0.0)
 
-## Project Structure
-
-- `build_scripts/`: Contains build scripts to automate compiling the application.
-- `src/`: Source code and setup files for the WavFix application.
-  - `WavFix.py`: The main source code file for the WavFix application.
-  - `Info.plist`: A property list file containing metadata for macOS.
-  - `setup.py`: A setup script for building the application using cx_Freeze.
-  - `WavFix.spec`: A specification file for building the application using PyInstaller.
-- `docs/`: User Guide and images used in documentation.
-- `icons/`: Icon files for the application in .icns and .ico formats.
-
 ## Table of Contents
 
 - [Features](#features)
 - [How to use WavFix](#how-to-use-wavfix)
 - [Smart Save System](#smart-save-system)
 - [Compiling WavFix](#compiling-wavfix)
+  - [Project Structure](#project-structure)
   - [Prerequisites](#prerequisites)
   - [Build scripts](#build-scripts)
   - [Setting Up](#setting-up)
@@ -69,6 +59,17 @@ WavFix's Smart Save system simplifies the file-saving process and minimizes the 
 *The rest of this README covers the necessary steps to build WavFix from source code.*
 To download the compiled app, check out the Releases tab on the right of the repository.
 For more information about WavFix, please see the [WavFix User Guide](docs/WavFix_User_Guide.pdf).
+
+### Project Structure
+
+- `build_scripts/`: Contains build scripts to automate compiling the application.
+- `src/`: Source code and setup files for the WavFix application.
+  - `WavFix.py`: The main source code file for the WavFix application.
+  - `Info.plist`: A property list file containing metadata for macOS.
+  - `setup.py`: A setup script for building the application using cx_Freeze.
+  - `WavFix.spec`: A specification file for building the application using PyInstaller.
+- `docs/`: User Guide and images used in documentation.
+- `icons/`: Icon files for the application in .icns and .ico formats.
 
 ### Prerequisites
 
