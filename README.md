@@ -55,7 +55,7 @@ WavFix is a lightweight application designed to fix the Pioneer DJ Error E-8305,
 3. Once the files are loaded into the application, click on the "Remove Tags" button.
 4. Select an output directory, and the modified files will be saved there.
 
-For a more detailed guide on using the application, refer to the [WavFix User Guide](WavFix/docs/WavFix_User_Guide.pdf).
+For a more detailed guide on using the application, refer to the [WavFix User Guide](docs/WavFix_User_Guide.pdf).
 
 ## Smart Save System
 
@@ -323,7 +323,7 @@ I sincerely appreciate the efforts of everyone involved in making WavFix a bette
 
 If you encounter any issues while using WavFix or have any questions regarding the project, please feel free to:
 
-1. Check the [User Guide and Documentation](WavFix/docs/WavFix_User_Guide.pdf) for detailed information and usage instructions.
+1. Check the [User Guide and Documentation](docs/WavFix_User_Guide.pdf) for detailed information and usage instructions.
 2. Submit a [GitHub issue](https://github.com/Dreamwalkertunes/WavFix/issues) with a description of your problem or question.
 3. Email me at [wavfix.dev@gmail.com](mailto:wavfix.dev@gmail.com).
 4. Reach out to me on Twitter: [@Dreamwalkertune](https://twitter.com/Dreamwalkertune).
