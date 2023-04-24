@@ -63,6 +63,7 @@ WavFix's Smart Save system simplifies the file-saving process and minimizes the 
 ## Compiling WavFix
 
 *The rest of this README covers the necessary steps to build WavFix from source code.*
+To download the compiled app, check out the Releases tab on the right of the repository.
 For more information about WavFix, please see the [WavFix User Guide](docs/WavFix_User_Guide.pdf).
 
 ### Prerequisites
@@ -290,11 +291,11 @@ Wait for the packager to finish.
 
 If for some reason you are having trouble with the bundled file, you can run:
 
-***MacOS***
+**MacOS**
 
     python3 src/setup.py build
 
-***Windows***
+**Windows**
 
     python src\setup.py build
 
