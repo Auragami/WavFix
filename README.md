@@ -176,7 +176,7 @@ WavFix is most optimally built with PyInstaller. PyInstaller writes all of the d
 The 'WavFix.spec' script contains an optional argument that can be added to the Command Prompt/Terminal command. This argument determines if the setup script will package standard library dependencies from your system libraries or the active virtual environment.
 The argument is `USE_VENV=1`, which can be added to the beginning of the command.
 
-*For builds using the method described in 'Create virtual environment' above, you must NOT include this optional argument.*
+*For builds using the method described in [Create a virtual environment](#create-a-virtual-environment) above, you must NOT include this optional argument.*
 
 For builds using Conda, or other methods creating a virtual environment with the standard library dependencies, you should include this optional argument.
 
@@ -204,12 +204,12 @@ For venv sourced standard libraries on Windows:
 ### Installing WavFix
 
 **Mac Installation**
-After completing the build instructions, the finished .app is located here: WavFix/dist/*WavFix.app* <---
+After completing the build instructions, the finished .app is located here: WavFix/dist/*WavFix.app*
 The bundled app does not have dependencies, and so can be placed anywhere.
 You can delete the rest of the build folder, or the entire WavFix repository.
 
 **PC Installation**
-After completing the build instructions, the finished .exe is located here: WavFix/dist/*WavFix.exe* <---
+After completing the build instructions, the finished .exe is located here: WavFix/dist/*WavFix.exe*
 The bundled executeable does not have dependencies, and so can be placed anywhere.
 You can delete the rest of the build folder, or the entire WavFix repository.
 
