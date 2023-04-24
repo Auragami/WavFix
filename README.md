@@ -1,6 +1,9 @@
 # WavFix
 
-<p><img src="https://github.com/Dreamwalkertunes/WavFix/blob/main/docs/images/lightmode.png" alt="lightmode" width="50%" height="50%" /><img src="https://github.com/Dreamwalkertunes/WavFix/blob/main/docs/images/darkmode.png" alt="darkmode" width="50%" height="50%" /></p>
+<p>
+  <img src="docs/images/lightmode.png" alt="lightmode" width="50%" height="50%" />
+  <img src="docs/images/darkmode.png" alt="darkmode" width="50%" height="50%" />
+</p>
 
 By Dreamwalker (C) 2023
 
@@ -9,6 +12,7 @@ By Dreamwalker (C) 2023
 WavFix is a lightweight application for MacOS and Windows, designed to fix the Pioneer DJ Error E-8305 caused by the wFormat flag inserted into some WAV files. The application corrects this error without encoding or changing the audio. WavFix also supports batch processing and visual inspection of the files.
 
 ## Download
+
 Compiled executables for MacOS and Windows are [here](https://github.com/Dreamwalkertunes/WavFix/releases/tag/v1.0.0)
 
 ## Table of Contents
@@ -296,11 +300,11 @@ Wait for the packager to finish.
 
 If for some reason you are having trouble with the bundled file, you can run:
 
-**MacOS**
+**MacOS:**
 
     python3 src/setup.py build
 
-**Windows**
+**Windows:**
 
     python src\setup.py build
 
@@ -340,6 +344,7 @@ I'll do my best to help you out and address any issues you may encounter.
 If you've found a bug in the project, please [submit an issue on GitHub](https://github.com/Dreamwalkertunes/WavFix/issues) with a detailed description of the problem and steps to reproduce it. Make sure to search for existing issues to avoid duplicates.
 
 ## Donations
+
 WavFix is free software, and I very much appreciate your support to help maintain and improve it. If you find WavFix useful and would like to support its development, please consider making a donation. Your contribution will help cover the costs of spending my time developing and maintaining free tools like WavFix.
 
 You can donate via PayPal or Stripe on my KoFi: [Dreamwalker's KoFi](https://tinyurl.com/WavFix-KoFi)
