@@ -21,9 +21,6 @@ WavFix is a lightweight application designed to fix the Pioneer DJ Error E-8305,
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Project Structure](#project-structure)
-- [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [How to use WavFix](#how-to-use-wavfix)
 - [Smart Save System](#smart-save-system)
@@ -82,9 +79,9 @@ This repository includes a shellcode (.sh) and batch (.bat) build script for Mac
 The build scripts have been programmed to accept arguments that allow any variation of the build process to be selected.
 The arguments can simply be added to the end of the command that runs the build script.
 
-`-v` - Sources the Python standard libraries from your virtual environment instead of the system libraries.
-`-c` - Builds the virtual environment using Conda instead of Python (should be accompanied by the `-v` argument).
-`-f` - Builds the application using cx_Freeze instead of PyInstaller (not recommended).
+- `-v` - Sources the Python standard libraries from your virtual environment instead of the system libraries.
+- `-c` - Builds the virtual environment using Conda instead of Python (should be accompanied by the `-v` argument).
+- `-f` - Builds the application using cx_Freeze instead of PyInstaller (not recommended).
 
 *If you execute the build script with a virtual environment active, that environment will be used instead of creating a new one.*
 
