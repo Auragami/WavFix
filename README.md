@@ -1,5 +1,7 @@
 # WavFix
 
+<img width="686" alt="lightmode" src="https://user-images.githubusercontent.com/131020999/233953809-b8d1e9a4-cc83-4615-816c-b7d5f8f175e7.png">
+
 By Dreamwalker (C) 2023
 
 ## Overview
@@ -64,7 +66,7 @@ WavFix's Smart Save system simplifies the file-saving process and minimizes the 
 ## Compiling WavFix
 
 *The rest of this README covers the necessary steps to build WavFix from source code.*
-For more information about WavFix, please see the 'WavFix_User_Guide' in WavFix/docs/
+For more information about WavFix, please see the [WavFix User Guide](docs/WavFix_User_Guide.pdf).
 
 ### Prerequisites
 
