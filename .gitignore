@@ -1,0 +1,27 @@
+# .gitignore for WavFix
+
+# Ignore VS Code workspace settings
+.vscode/
+*.code-workspace
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Python virtual environments
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Ignore any other temporary or system-specific files
+*.log
+*.bak
+*.swp

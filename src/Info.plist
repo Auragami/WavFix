@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleName</key>
+	<string>WavFix</string>
+	<key>CFBundleDisplayName</key>
+	<string>WavFix</string>
+	<key>CFBundleGetInfoString</key>
+	<string>WavFix by Dreamwalker</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.dreamwalker.WavFix</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright (C) 2023 Dreamwalker</string>
+	<key>CFBundleIconFile</key>
+	<string>icon.icns</string>
+</dict>
+</plist>
