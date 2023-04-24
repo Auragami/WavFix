@@ -1,12 +1,12 @@
 # WavFix
 
-<img width="686" alt="lightmode" src="https://user-images.githubusercontent.com/131020999/233953809-b8d1e9a4-cc83-4615-816c-b7d5f8f175e7.png">
+<p><img src="https://github.com/Dreamwalkertunes/WavFix/blob/main/docs/images/lightmode.png" alt="lightmode" width="50%" height="50%" /><img src="https://github.com/Dreamwalkertunes/WavFix/blob/main/docs/images/darkmode.png" alt="darkmode" width="50%" height="50%" /></p>
 
 By Dreamwalker (C) 2023
 
 ## Overview
 
-WavFix is a lightweight application designed to fix the Pioneer DJ Error E-8305, caused by the wFormat flag inserted into some WAV files. The application corrects this error without encoding or changing the audio. WavFix also supports batch processing and visual inspection of the files.
+WavFix is a lightweight application for MacOS and Windows, designed to fix the Pioneer DJ Error E-8305 caused by the wFormat flag inserted into some WAV files. The application corrects this error without encoding or changing the audio. WavFix also supports batch processing and visual inspection of the files.
 
 ## Download
 Compiled executables for MacOS and Windows are [here](https://github.com/Dreamwalkertunes/WavFix/releases/tag/v1.0.0)
