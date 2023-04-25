@@ -131,7 +131,7 @@ info_plist = {
     'CFBundleName': 'WavFix',
     'CFBundleDisplayName': 'WavFix',
     'CFBundleGetInfoString': 'WavFix by Dreamwalker',
-    'CFBundleVersion': '1.0.0',
+    'CFBundleVersion': '1.0.1',
     'CFBundleShortVersionString': '1.0',
     'CFBundleIdentifier': 'com.dreamwalker.WavFix',
     'NSHumanReadableCopyright': 'Copyright (C) 2023 Dreamwalker',

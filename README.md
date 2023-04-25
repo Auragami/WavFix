@@ -12,7 +12,7 @@ An explanation of the issue and the background for the project, can be found in 
 
 ## Download
 
-Compiled executables for MacOS and Windows are [here](https://github.com/Dreamwalkertunes/WavFix/releases/tag/v1.0.0).
+Compiled executables for MacOS and Windows are [here](https://github.com/Dreamwalkertunes/WavFix/releases/tag/v1.0.1).
 
 ## Table of Contents
 

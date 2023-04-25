@@ -564,19 +564,23 @@ class FileProcessor:
 
     @staticmethod
     def edit_wav_file(input_file, output_file):
-        """Edit a WAV file to set the wFormatTag (bytes 20-21) to a value of 01 00, or copy non-WAV files."""
+        """Edit a WAV file if it has the wFormatTag, to set bytes 20-21 to a value of 01 00, or copy the file."""
         ext = input_file.suffix.lower()
         if ext == ".wav":
-            with open(input_file, "rb") as f_in:
-                data = f_in.read()
+            wav_bytes_20_21 = FileHandler.read_wav_file(input_file)
+            if wav_bytes_20_21 != b'\x01\x00':
+                with open(input_file, "rb") as f_in:
+                    data = f_in.read()
 
-            # Modify the wFormatTag (bytes 20-21) to a value of 01 00
-            modified_data = bytearray(data)
-            modified_data[20] = 1
-            modified_data[21] = 0
+                # Modify the wFormatTag (bytes 20-21) to a value of 01 00
+                modified_data = bytearray(data)
+                modified_data[20] = 1
+                modified_data[21] = 0
 
-            with open(output_file, "wb") as f_out:
-                f_out.write(modified_data)
+                with open(output_file, "wb") as f_out:
+                    f_out.write(modified_data)
+            else:
+                shutil.copy(input_file, output_file)
         else:
             shutil.copy(input_file, output_file)
 

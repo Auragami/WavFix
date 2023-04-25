@@ -13,6 +13,16 @@ All notable changes to the WavFix project will be documented in this file.
 - Pop-out window for additional waveform analysis:
 - Add functionality to inspect basic information about the WAV files
 
+## [1.0.1] - 2023-04-25
+
+### Fixed (v1.0.1)
+
+- Minor improvement to edit_wav_file logic to optimize export efficiency.
+
+### Known Bugs (v1.0.1)
+
+- The Main Window (ttk.Treeview) scales differently on different DPI monitors.
+
 ## [1.0.0] - 2023-04-22
 
 ### Added (v1.0.0)
