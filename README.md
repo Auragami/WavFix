@@ -1,6 +1,6 @@
 # WavFix
 
-![lightmode](docs/images/lightmode.png) ![darkmode](docs/images/darkmode.png)
+![darkmode](docs/images/darkmode.png)
 
 By Dreamwalker (C) 2023
 
