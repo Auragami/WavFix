@@ -1,6 +1,6 @@
 # WavFix
 
-![darkmode](docs/images/darkmode.png)
+<p><img src="https://github.com/Dreamwalkertunes/WavFix/blob/main/docs/images/lightmode.png" alt="lightmode" width="50%" height="50%" /><img src="https://github.com/Dreamwalkertunes/WavFix/blob/main/docs/images/darkmode.png" alt="darkmode" width="50%" height="50%" /></p>
 
 By Dreamwalker (C) 2023
 
