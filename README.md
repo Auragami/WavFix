@@ -1,9 +1,6 @@
 # WavFix
 
-<p>
-  <img src="docs/images/lightmode.png" alt="lightmode" width="50%" height="50%" />
-  <img src="docs/images/darkmode.png" alt="darkmode" width="50%" height="50%" />
-</p>
+![lightmode](docs/images/lightmode.png) ![darkmode](docs/images/darkmode.png)
 
 By Dreamwalker (C) 2023
 
