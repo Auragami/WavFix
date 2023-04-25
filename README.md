@@ -89,7 +89,7 @@ The build scripts have been programmed to accept arguments that allow any variat
 The arguments can simply be added to the end of the command that runs the build script.
 
 - `-v` - Sources the Python standard libraries from your virtual environment instead of the system libraries.
-- `-c` - Builds the virtual environment using Conda instead of Python (should be accompanied by the `-v` argument).
+- `-c` - Builds the virtual environment using Conda instead of Python.
 - `-f` - Builds the application using cx_Freeze instead of PyInstaller (not recommended).
 
 *If you execute the build script with a virtual environment active, that environment will be used instead of creating a new one.*
@@ -248,7 +248,7 @@ You should now see `(wavfix_env)` at the beginning of your terminal or command p
 
 The instructions provided for building the app remain the same, except you will use the applicable argument to use your active virtual environment instead of the system libraries.
 
-Continue to 'Install dependencies' before building the app.
+Continue to [Install dependencies](#install-dependencies) before building the app.
 
 #### Building with cx_Freeze
 
