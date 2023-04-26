@@ -122,7 +122,7 @@ mac_options = {
 
 setup(
     name="WavFix",
-    version="1.0",
+    version="1.1",
     description="WavFix Application",
     options={"build_exe": build_options, "bdist_mac": mac_options},
     executables=[

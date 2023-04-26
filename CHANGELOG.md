@@ -8,10 +8,23 @@ All notable changes to the WavFix project will be documented in this file.
 
 - Create a unique and improved icon for the application
 - Linux support
-- Save the state of Dark Mode between sessions
 - Implement an updater
 - Pop-out window for additional waveform analysis:
 - Add functionality to inspect basic information about the WAV files
+
+## [1.1.0] - 2023-04-26
+
+### Added (v1.1.0)
+
+- Color theme (dark/light mode) state saves between sessions. The setting is saved in the user config directory.
+
+### Fixed (v1.1.0)
+
+- In previous versions, whenever a call to update the color theme was made, the function to read the wav data was called. This meant that if large amounts of files were loaded when the user toggled the color theme, the program would lag. This has been fixed.
+
+### Known Bugs (v1.1.0)
+
+- The Main Window (ttk.Treeview) scales differently on different DPI monitors.
 
 ## [1.0.1] - 2023-04-25
 

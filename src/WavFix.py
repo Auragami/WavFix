@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with WavFix.  If not, see <http://www.gnu.org/licenses/>.
 
+import json
 import os
 import platform
 import shutil
@@ -22,6 +23,7 @@ import tempfile
 import tkinter as tk
 from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
+from appdirs import user_config_dir
 from customtkinter import CTkButton, CTkLabel, CTkTextbox
 from tkinterdnd2 import DND_FILES, TkinterDnD
 
@@ -32,7 +34,7 @@ class UIConfig:
     os_name = platform.system()
 
     # Color Methods
-    DARK_MODE = False
+    DARK_MODE = True
 
     @staticmethod
     def bg_color():
@@ -216,24 +218,53 @@ class UIConfig:
     
     # Theme Methods
     @staticmethod
+    def save_config():
+        """Save the UI configuration to a JSON file in the user's config directory.
+        
+        If the config directory doesn't exist, it will be created.
+        """
+        config_dir = user_config_dir("WavFix", "Dreamwalker")
+        os.makedirs(config_dir, exist_ok=True)
+        config_file = os.path.join(config_dir, "config.json")
+
+        with open(config_file, "w") as f:
+            json.dump({"DARK_MODE": UIConfig.DARK_MODE}, f)
+
+    @staticmethod
+    def load_config():
+        """Load the UI configuration from a JSON file in the user's config directory.
+        
+        If the config file doesn't exist, the save_config() method will be called to
+        create a new config file with default settings.
+        """
+        config_dir = user_config_dir("WavFix", "Dreamwalker")
+        config_file = os.path.join(config_dir, "config.json")
+
+        if os.path.exists(config_file):
+            with open(config_file, "r") as f:
+                config_data = json.load(f)
+                UIConfig.DARK_MODE = config_data["DARK_MODE"]
+        else:
+            UIConfig.save_config()
+
+    @staticmethod
     def toggle_dark_mode(event=None, style=None):
         """Toggles the state of the color theme"""
         UIConfig.DARK_MODE = not UIConfig.DARK_MODE
-        UIConfig.update_widget_colors(style)
+        UIConfig.update_widget_colors()
+        UIConfig.update_treeview_colors()
+        UIConfig.configure_treeview_style(style, UIConfig)
 
     @staticmethod
     def update_treeview_colors():
-        """Updates the color of the files text in the treeview"""
+        """Updates the color of the files text in the treeview."""
         for item in files_tree.get_children():
-            file_path = files_tree.set(item, "Path")
-            bytes_20_21 = FileHandler.read_wav_file(Path(file_path))
-
-            color = FileHandler.get_color(Path(file_path), bytes_20_21)
-            files_tree.item(item, tags=(color,))
-            files_tree.tag_configure(color, foreground=color)
+            color_tag = files_tree.item(item, "tags")[0]
+            color = getattr(UIConfig, f"{color_tag}_files_color")()
+            files_tree.tag_configure(color_tag, foreground=color)
 
     @staticmethod
-    def update_widget_colors(style):
+    def update_widget_colors():
         """Updates the colors of the UI elements"""
         frame.configure(bg=UIConfig.bg_color())
 
@@ -253,14 +284,8 @@ class UIConfig:
         good_bad_label.configure(text_color=UIConfig.green_files_color())
         bad_label.configure(text_color=UIConfig.red_files_color())
 
-        files_tree.tag_configure("oddrow", background=UIConfig.window_color())
-        files_tree.tag_configure("evenrow", background=UIConfig.bg_color())
-
         output_text.configure(fg_color=UIConfig.window_color())
         output_text.configure(text_color=UIConfig.output_text_color())
-
-        UIConfig.update_treeview_colors()
-        UIConfig.configure_treeview_style(style, UIConfig)
 
 
 class FileHandler:
@@ -370,7 +395,7 @@ class FileHandler:
 
     @staticmethod
     def get_color(file_path, bytes_20_21):
-        """Retrieve the color information for a file based on the specified bytes.
+        """Retrieve the color information and color_tag for a file based on the specified bytes.
 
         - WAV files with bytes 20 and 21 equal to 01 00 are colored green.
         - WAV files with bytes 20 and 21 not equal to 01 00 are colored red.
@@ -381,16 +406,16 @@ class FileHandler:
             bytes_20_21: A tuple containing the byte positions to be read.
 
         Returns:
-            str: The color information extracted from the file.
+            tuple: The color information extracted from the file and its color_tag.
         """
         ext = file_path.suffix.lower()
         if ext == ".wav":
             if bytes_20_21 and bytes_20_21[0] == 1 and bytes_20_21[1] == 0:
-                return UIConfig.green_files_color()
+                return UIConfig.green_files_color(), "green"
             else:
-                return UIConfig.red_files_color()
+                return UIConfig.red_files_color(), "red"
         else:
-            return UIConfig.blue_files_color()
+            return UIConfig.blue_files_color(), "blue"
 
     def add_files_to_tree(self, file_paths):
         """Add files to the treeview with the corresponding color based on the type."""
@@ -405,7 +430,7 @@ class FileHandler:
 
             file_path = Path(file_path)
             bytes_20_21 = self.read_wav_file(file_path)
-            color = self.get_color(file_path, bytes_20_21)
+            color, color_tag = self.get_color(file_path, bytes_20_21)
 
             if bytes_20_21:
                 bytes_str = f"{bytes_20_21[0]:02X} {bytes_20_21[1]:02X}"
@@ -425,9 +450,9 @@ class FileHandler:
                 "",
                 "end",
                 values=(file_name, bytes_str_padded, str(file_path)),
-                tags=(color,),
+                tags=(color_tag,),
             )
-            self.files_tree.tag_configure(color, foreground=color)
+            self.files_tree.tag_configure(color_tag, foreground=color)
             self.update_remove_tags_button()
 
         if self.files_tree.get_children():
@@ -648,6 +673,24 @@ def clear_output_text(event=None):
     output_text.configure(state="disabled")
 
 
+def on_close():
+    """Calls for the state of DARK_MODE to be saved."""
+    UIConfig.save_config()
+    root.destroy()
+    
+    
+def quit_bindings(root, on_close):
+    """Create quit key bindings based on the operating system."""
+    if UIConfig.os_name == "Darwin":
+        root.bind_all('<Command-Q>', lambda event: on_close())
+        root.createcommand("::tk::mac::Quit", on_close)
+    elif UIConfig.os_name == "Windows":
+        root.bind_all('<Alt-F4>', lambda event: on_close())
+        root.bind_all('<Control-q>', lambda event: on_close())
+    elif UIConfig.os_name == "Linux":
+        root.bind_all('<Control-q>', lambda event: on_close())
+
+
 class ToolTip:
     """Creates a tooltip for a given widget."""
     treeview_font = UIConfig.treeview_text()
@@ -777,12 +820,15 @@ class ToolTip:
 
 
 if __name__ == "__main__":
-    # UI Window
+    # UI
     root = TkinterDnD.Tk()
     root.attributes("-topmost", True)
     root.update()
     root.attributes("-topmost", False)
     root.title("WavFix")
+    
+    UIConfig.load_config()
+    
     frame = tk.Frame(root, bg=UIConfig.bg_color(), padx=20, pady=12)
     frame.grid()
 
@@ -931,7 +977,8 @@ if __name__ == "__main__":
     )
     author_label.bind(
         "<Button-1>", lambda event: UIConfig.toggle_dark_mode(style=custom_treeview_style),
-    )
+    )    
+    quit_bindings(root, on_close)
 
     # Tooltips
     treeview_tooltip = ToolTip(files_tree, "")
@@ -946,7 +993,9 @@ if __name__ == "__main__":
         remove_tags_button, "Choose output path and clean files"
     )
 
-    UIConfig.update_widget_colors(custom_treeview_style)
+    UIConfig.update_widget_colors()
+
+    root.protocol("WM_DELETE_WINDOW", on_close)
 
     root.mainloop()
 

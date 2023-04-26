@@ -4,6 +4,26 @@
 .vscode/
 *.code-workspace
 
+# Ignore Sublime Text project and workspace files
+*.sublime-workspace
+*.sublime-project
+
+# Ignore PyCharm project files
+.idea/
+*.iml
+
+# Ignore Jupyter Notebook checkpoints and metadata
+.ipynb_checkpoints/
+*.nbmetadata
+
+# Ignore npm and yarn lock files
+package-lock.json
+yarn.lock
+
+# Ignore configuration files
+config.json
+config.ini
+
 # Ignore macOS system files
 .DS_Store
 
@@ -21,7 +41,7 @@ dist/
 build/
 *.egg
 
-# Ignore any other temporary or system-specific files
+# Ignore other temporary or system-specific files
 *.log
 *.bak
 *.swp

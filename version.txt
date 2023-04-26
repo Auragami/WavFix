@@ -1,5 +1,5 @@
-Version: 1.0.1
-Release Date: 2023-04-25
+Version: 1.1.0
+Release Date: 2023-04-26
 Changes:
-- Minor improvement to export logic
-- Added version file
+- Added: state of light/dark mode theme saves between sessions.
+- Fixed: changing color theme caused WavFix to read the files again. This has been fixed.
