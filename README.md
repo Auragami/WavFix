@@ -1,8 +1,7 @@
 # WavFix
 
-![darkmode](docs/images/darkmode.png)
-
 Current version: 1.1.0
+![darkmode](docs/images/darkmode.png)
 
 By Dreamwalker (C) 2023
 
