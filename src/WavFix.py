@@ -1000,3 +1000,4 @@ if __name__ == "__main__":
     root.mainloop()
 
 # WavFix, by Dreamwalker
+# v1.1.0

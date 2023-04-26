@@ -2,6 +2,8 @@
 
 ![darkmode](docs/images/darkmode.png)
 
+Current version: 1.1.0
+
 By Dreamwalker (C) 2023
 
 ## Overview

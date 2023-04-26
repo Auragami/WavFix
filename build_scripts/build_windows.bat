@@ -143,3 +143,6 @@ if "!USE_FREEZE!" == "1" (
   )
 
 endlocal
+
+REM WavFix build script, by Dreamwalker
+REM v1.1.0

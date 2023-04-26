@@ -11,6 +11,7 @@ The primary use case for WavFix is to solve the Pioneer DJ Error E-8305.
 
 The goal of WavFix is to remain a lightweight and self-contained application within a single file executable without dependencies. If sufficient improvements within the scope of the project would necessitate a different structure, it may be considered. When proposing improvements, please weigh the added complexity and resource usage against the limited scope of the application and the importance of maintaining its simple and lightweight structure.
 Currently, WavFix uses my Dreamwalker project logo for an icon. If anyone would like to design an icon for the project following professional standards, it would be greatly appreciated!
+WavFix should be mostly compatible with Linux. However some tests and small edits are necessary. If anyone would like to implement Linux support, that would also be greatly appreciated!
 
 ## Reporting Bugs
 

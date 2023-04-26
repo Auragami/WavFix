@@ -130,3 +130,6 @@ fi
 
 echo -e "${IMPORTANT}Build complete!${RESET}"
 echo -e "${IMPORTANT}Compiled app is located in: "build/WavFix.app"${RESET}"
+
+# WavFix build script, by Dreamwalker
+# v1.1.0

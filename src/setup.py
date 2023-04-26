@@ -129,3 +129,6 @@ setup(
         Executable("src/WavFix.py", base=base, icon="icons/icon.ico")
     ],
 )
+
+# WavFix cx_Freeze setup file, by Dreamwalker
+# v1.1.0

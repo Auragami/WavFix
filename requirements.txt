@@ -2,3 +2,6 @@ appdirs==1.4.4
 customtkinter==5.1.2
 pyinstaller==5.10.1
 tkinterdnd2==0.3.0
+
+# WavFix requirements
+# v1.1.0

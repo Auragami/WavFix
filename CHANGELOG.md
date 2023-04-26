@@ -16,7 +16,7 @@ All notable changes to the WavFix project will be documented in this file.
 
 ### Added (v1.1.0)
 
-- Color theme (dark/light mode) state saves between sessions. The setting is saved in the user config directory.
+- Color theme (dark/light mode) state saves between sessions. The setting is saved in the user config directory as a small .json file.
 
 ### Fixed (v1.1.0)
 

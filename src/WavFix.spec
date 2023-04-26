@@ -146,3 +146,6 @@ app = BUNDLE(
     bundle_identifier=None,
     info_plist=info_plist
 )
+
+# WavFix PyInstaller setup file, by Dreamwalker
+# v1.1.0
