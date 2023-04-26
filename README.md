@@ -54,6 +54,7 @@ I hope that this tool will be helpful. <3
 - Preservation of the original file structure
 - Smart Save system to prevent unintentional data loss
 - Supports common album file types, including audio, images, and documents
+- Light mode/Dark mode toggle via clicking on the author text "By Dreamwalker"
 
 ## How to use WavFix
 
