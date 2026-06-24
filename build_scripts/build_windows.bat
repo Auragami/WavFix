@@ -1,6 +1,6 @@
 @echo off
 
-REM Copyright (C) 2023 Dreamwalker
+REM Copyright (C) 2023-2026 Auragami
 REM
 REM This file is part of WavFix.
 REM
@@ -22,6 +22,7 @@ set "USE_CONDA=0"
 set "USE_VENV=0"
 set "USE_FREEZE=0"
 set NEW_VENV_CREATED=0
+if not defined RELEASE_PYTHON_VERSION set "RELEASE_PYTHON_VERSION=3.12"
 setlocal enabledelayedexpansion
 
 REM Parse arguments
@@ -49,14 +50,19 @@ if not defined VIRTUAL_ENV if not defined CONDA_PREFIX (
   REM Create and activate the virtual environment
   if "!USE_CONDA!" == "1" (
     echo Building Conda environment...
-    conda create --yes -n wavfix_env python=3.11
+    conda create --yes -n wavfix_env python=!RELEASE_PYTHON_VERSION!
     call activate wavfix_env
     echo Python path: & where python | findstr /I /R /C:"python.exe" /C:"python[0-9]*\.exe"
     FOR /F "tokens=* USEBACKQ" %%F IN (`echo !CONDA_PREFIX!`) DO (SET CONDA_PREFIX=%%F)
     echo Conda environment path: !CONDA_PREFIX!
   ) else (
     echo Building virtual environment...
-    python -m venv venv
+    py -!RELEASE_PYTHON_VERSION! -m venv venv
+    if errorlevel 1 (
+        echo Python !RELEASE_PYTHON_VERSION! was not found.
+        echo Install Python !RELEASE_PYTHON_VERSION! or build with Conda using -c.
+        exit /b 1
+    )
     call venv\Scripts\activate
     echo Python path: & where python | findstr /I /R /C:"python.exe" /C:"python[0-9]*\.exe"
     FOR /F "tokens=* USEBACKQ" %%F IN (`echo !VIRTUAL_ENV!`) DO (SET VIRTUAL_ENV=%%F)
@@ -73,6 +79,14 @@ if defined VIRTUAL_ENV (
   echo Proceeding using the active Conda environment: !CONDA_PREFIX!
 )
 
+python -c "import sys; expected=tuple(map(int, '!RELEASE_PYTHON_VERSION!'.split('.'))); actual=sys.version_info[:len(expected)]; raise SystemExit(0 if actual == expected else 1)"
+if errorlevel 1 (
+    echo Release artifacts must be built with Python !RELEASE_PYTHON_VERSION!.
+    python --version
+    exit /b 1
+)
+echo Release Python version:
+python --version
 
 REM Install dependencies
 echo Installing dependencies...
@@ -97,13 +111,13 @@ if "!USE_FREEZE!" == "1" (
     echo Building WavFix with PyInstaller...
     if "!USE_VENV!" == "1" (
         echo Using active virtual environment to source Python standard libraries...
-        pyinstaller src/WavFix.spec
+        python -m PyInstaller src/WavFix.spec
     ) else if "!USE_CONDA!" == "1" (
         echo Using active Conda environment to source Python standard libraries...
-        pyinstaller src/WavFix.spec
+        python -m PyInstaller src/WavFix.spec
     ) else (
         echo Using system path to source Python standard libraries...
-        pyinstaller src/WavFix.spec
+        python -m PyInstaller src/WavFix.spec
     )
 )
 
@@ -129,10 +143,15 @@ if "!USE_FREEZE!" == "1" (
   move /y WavFix build\
 ) else (
     echo Cleaning up build files...
-    rmdir /s /q build
+    if exist build rmdir /s /q build
     mkdir build
-    move /y dist\WavFix.exe build\
-    rmdir /s /q dist
+    if exist dist\WavFix.exe (
+        move /y dist\WavFix.exe build\
+    ) else (
+        echo Expected PyInstaller artifact was not found.
+        exit /b 1
+    )
+    if exist dist rmdir /s /q dist
 )
 
 echo Build complete!
@@ -144,5 +163,5 @@ if "!USE_FREEZE!" == "1" (
 
 endlocal
 
-REM WavFix build script, by Dreamwalker
-REM v1.1.0
+REM WavFix build script, by Auragami
+REM v2.0.0

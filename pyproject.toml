@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wavfix"
+version = "2.0.0"
+description = "Format-safe Pioneer WAV compatibility tool with GUI and CLI"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Auragami" }]
+dependencies = [
+  "appdirs>=1.4.4",
+  "customtkinter>=5.1.2",
+  "numpy>=1.26.0",
+  "soundfile>=0.12.1",
+  "soxr>=0.3.7",
+  "tkinterdnd2>=0.3.0",
+  "pyobjc-framework-Cocoa>=10.0; platform_system == 'Darwin'",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+  "ruff>=0.6.0",
+  "pyright>=1.1.390",
+]
+
+[project.scripts]
+wavfix = "wavfix.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

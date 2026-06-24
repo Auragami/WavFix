@@ -1,4 +1,4 @@
-# Copyright (C) 2023 Dreamwalker
+# Copyright (C) 2023-2026 Auragami
  
 # This file is part of WavFix.
  
@@ -89,13 +89,15 @@ a = Analysis(
     pathex=['.'],
     binaries=[],
     datas=[('../icons', 'icons'),
+           ('../res/logos', 'res/logos'),
+           ('../version.txt', '.'),
            (customtkinter_path, 'customtkinter'),
            (tkinterdnd2_path, 'tkinterdnd2'),
            (tcl_library, 'tcl8.6'),
            (tk_library, 'tk8.6')],
     hookspath=[],
     runtime_hooks=[],
-    hiddenimports=['customtkinter'],
+    hiddenimports=['customtkinter', 'wavfix', 'numpy', 'soundfile', 'soxr'],
     excludes=[],
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
@@ -130,22 +132,23 @@ exe = EXE(
 info_plist = {
     'CFBundleName': 'WavFix',
     'CFBundleDisplayName': 'WavFix',
-    'CFBundleGetInfoString': 'WavFix by Dreamwalker',
-    'CFBundleVersion': '1.1.0',
-    'CFBundleShortVersionString': '1.1',
-    'CFBundleIdentifier': 'com.dreamwalker.WavFix',
-    'NSHumanReadableCopyright': 'Copyright (C) 2023 Dreamwalker',
+    'CFBundleGetInfoString': 'WavFix by Auragami',
+    'CFBundleVersion': '2.0.0',
+    'CFBundleShortVersionString': '2.0.0',
+    'CFBundleIdentifier': 'com.Auragami.WavFix',
+    'NSHumanReadableCopyright': 'Copyright (C) 2023-2026 Auragami',
     'CFBundleIconFile': 'icon.icns',
 }
 
-# Bundle information
-app = BUNDLE(
-    exe,
-    name='WavFix.app',
-    icon='../icons/icon.icns',
-    bundle_identifier=None,
-    info_plist=info_plist
-)
+if not sys.platform.startswith('win'):
+    # Bundle information
+    app = BUNDLE(
+        exe,
+        name='WavFix.app',
+        icon='../icons/icon.icns',
+        bundle_identifier=None,
+        info_plist=info_plist
+    )
 
-# WavFix PyInstaller setup file, by Dreamwalker
-# v1.1.0
+# WavFix PyInstaller setup file, by Auragami
+# v2.0.0

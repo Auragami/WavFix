@@ -7,15 +7,15 @@
 	<key>CFBundleDisplayName</key>
 	<string>WavFix</string>
 	<key>CFBundleGetInfoString</key>
-	<string>WavFix by Dreamwalker</string>
+	<string>WavFix by Auragami</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.0</string>
+	<string>2.0.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>2.0.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.dreamwalker.WavFix</string>
+	<string>com.Auragami.WavFix</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright (C) 2023 Dreamwalker</string>
+	<string>Copyright (C) 2023-2026 Auragami</string>
 	<key>CFBundleIconFile</key>
 	<string>icon.icns</string>
 </dict>

@@ -1,5 +1,11 @@
-Version: 1.1.0
-Release Date: 2023-04-26
+Version: 2.0.0
+Release Date: 2026-06-24
+Latest Published Version: 1.1.0
+Latest Published Release Date: 2023-04-26
 Changes:
-- Added: state of light/dark mode theme saves between sessions.
-- Fixed: changing color theme caused WavFix to read the files again. This has been fixed.
+- Added true multithreaded core processing for faster batch throughput.
+- Replaced fixed-offset WAV byte mutation with RIFF/WAVE parsing, classification, and action decisions.
+- Added format-safe actions: PASS_THROUGH, HEADER_FIX, CONVERT, REJECT.
+- Added in-process conversion backend (numpy + soundfile + soxr) for float/incompatible WAV files with explicit conversion consent.
+- Added compatibility profiles and policy controls in GUI/CLI.
+- Added post-write validation and expanded parser/decision/core/CLI test coverage.

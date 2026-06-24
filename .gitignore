@@ -1,50 +1,26 @@
-# .gitignore for WavFix
-
-# Ignore VS Code workspace settings
-.vscode/
-*.code-workspace
-
-# Ignore Sublime Text project and workspace files
-*.sublime-workspace
-*.sublime-project
-
-# Ignore PyCharm project files
-.idea/
-*.iml
-
-# Ignore Jupyter Notebook checkpoints and metadata
-.ipynb_checkpoints/
-*.nbmetadata
-
-# Ignore npm and yarn lock files
-package-lock.json
-yarn.lock
-
-# Ignore configuration files
-config.json
-config.ini
-
-# Ignore macOS system files
-.DS_Store
-
-# Ignore Python virtual environments
-venv/
+# Python cache/artifacts
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
-*.pyc
-*.pyo
-*.pyd
-*.egg-info/
-dist/
+*.so
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+
+# Packaging/build outputs
 build/
-*.egg
+dist/
+*.egg-info/
+.eggs/
+*.spec.tmp
 
-# Ignore other temporary or system-specific files
-*.log
-*.bak
-*.swp
+# Virtual environments
+venv/
+.venv/
+env/
 
-# WavFix, by Dreamwalker
-# v1.1.0
+# OS/editor noise
+.DS_Store
+.vscode/

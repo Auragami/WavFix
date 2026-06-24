@@ -1,22 +1,24 @@
-# Copyright (C) 2023 Dreamwalker
- 
+# Copyright (C) 2023-2026 Auragami
+
 # This file is part of WavFix.
- 
+
 # WavFix is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
- 
+
 # WavFix is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
- 
+
 # You should have received a copy of the GNU General Public License
 # along with WavFix.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import sys
+from pathlib import Path
+
 from cx_Freeze import Executable, setup
 
 
@@ -73,8 +75,8 @@ def get_packages_paths():
 
 
 # Check if the '-v' or '--use-venv' flag is present in the command line arguments
-use_venv = '-v' in sys.argv or '--use-venv' in sys.argv
-sys.argv = [arg for arg in sys.argv if arg not in ['-v', '--use-venv']]
+use_venv = "-v" in sys.argv or "--use-venv" in sys.argv
+sys.argv = [arg for arg in sys.argv if arg not in ["-v", "--use-venv"]]
 
 # Get Tcl and Tk libraries paths
 tcl_library, tk_library = get_library_paths(use_venv)
@@ -85,6 +87,10 @@ os.environ["TK_LIBRARY"] = tk_library
 customtkinter_path, tkinterdnd2_path = get_packages_paths()
 
 # Configure cx_Freeze
+project_root = Path(__file__).resolve().parents[1]
+logos_dir = project_root / "res" / "logos"
+version_file = project_root / "version.txt"
+
 if sys.platform == "win32":
     base = "Win32GUI"
     lib_dylib_ext = ".dll"
@@ -106,9 +112,19 @@ build_options = {
         (tk_library, "tk8.6"),
         (customtkinter_path, "customtkinter"),
         (tkinterdnd2_path, "tkinterdnd2"),
+        (str(logos_dir), "res/logos"),
+        (str(version_file), "version.txt"),
     ],
-    "includes": ["tkinter", "tkinter.ttk", "customtkinter", "tkinterdnd2"],
-    "packages": ["os", "shutil", "tempfile", "pathlib"],
+    "includes": [
+        "tkinter",
+        "tkinter.ttk",
+        "customtkinter",
+        "tkinterdnd2",
+        "numpy",
+        "soundfile",
+        "soxr",
+    ],
+    "packages": ["os", "shutil", "tempfile", "pathlib", "wavfix", "numpy", "soundfile", "soxr"],
     "excludes": ["tkinter.test"],
     "optimize": 2,
     "build_exe": "WavFix",
@@ -122,13 +138,11 @@ mac_options = {
 
 setup(
     name="WavFix",
-    version="1.1",
+    version="2.0.0",
     description="WavFix Application",
     options={"build_exe": build_options, "bdist_mac": mac_options},
-    executables=[
-        Executable("src/WavFix.py", base=base, icon="icons/icon.ico")
-    ],
+    executables=[Executable("src/WavFix.py", base=base, icon="icons/icon.ico")],
 )
 
-# WavFix cx_Freeze setup file, by Dreamwalker
-# v1.1.0
+# WavFix cx_Freeze setup file, by Auragami
+# v2.0.0

@@ -1,36 +1,77 @@
 # Contributing to WavFix
 
-First of all, thank you for considering contributing to WavFix! Your help is greatly appreciated. This document will guide you through the process of contributing to the project.
+Thanks for contributing to WavFix.
 
 ## Scope
 
-WavFix's primary function is to batch remove the wFormatTag from wav files.
-The primary use case for WavFix is to solve the Pioneer DJ Error E-8305.
+WavFix focuses on reliable WAV metadata repair for Pioneer DJ compatibility,
+with both GUI and CLI workflows powered by the same core logic.
 
-## Project Goals
+## Development Setup
 
-The goal of WavFix is to remain a lightweight and self-contained application within a single file executable without dependencies. If sufficient improvements within the scope of the project would necessitate a different structure, it may be considered. When proposing improvements, please weigh the added complexity and resource usage against the limited scope of the application and the importance of maintaining its simple and lightweight structure.
-Currently, WavFix uses my Dreamwalker project logo for an icon. If anyone would like to design an icon for the project following professional standards, it would be greatly appreciated!
-WavFix should be mostly compatible with Linux. However some tests and small edits are necessary. If anyone would like to implement Linux support, that would also be greatly appreciated!
+1. Create and activate a Python `3.11+` virtual environment.
+2. Install runtime/build dependencies:
 
-## Reporting Bugs
+    make install
 
-If you've found a bug in the project, please [submit an issue on GitHub](https://github.com/Dreamwalkertunes/WavFix/issues) with a detailed description of the problem and steps to reproduce it. Make sure to search for existing issues to avoid duplicates.
+3. Install development tooling (`pytest`, `ruff`, `pyright`):
 
-## Requesting Features
+    make install-dev
 
-To request a new feature or enhancement for WavFix, [submit an issue on GitHub](https://github.com/Dreamwalkertunes/WavFix/issues) with a clear description of the desired feature and any potential use cases.
+4. Run the quality gate:
 
-## Submitting Pull Requests
+    make check
 
-1. Fork the repository and create a new branch for your feature or bugfix.
-2. Make your changes in the new branch, following the project's coding standards.
-3. Commit your changes and push the branch to your forked repository.
-4. [Create a pull request](https://github.com/Dreamwalkertunes/WavFix/compare) against the original repository's main branch.
-5. In the pull request description, explain your changes and how they benefit the project.
+You can also run the tools directly:
 
-We'll review your pull request and provide feedback or merge it if everything looks good.
+    make format-check
+    make lint
+    make typecheck
+    make test
+
+Build the app locally:
+
+    make build
+
+If `ruff` or `pyright` is missing locally, re-run:
+
+    make install-dev
+
+## Running the App
+
+GUI:
+
+    make run-gui
+
+CLI:
+
+    make run-cli ARGS="./tracks --output ./out --batch --overwrite no"
+
+## Project Architecture
+
+- `src/wavfix/core`: File scanning, inspection, output planning, and processing services
+- `src/wavfix/ui`: Tkinter UI and controllers
+- `src/wavfix/config`: Settings persistence
+- `src/wavfix/cli.py`: CLI entrypoint
+
+When adding features, keep business logic in `core` so both GUI and CLI can reuse it.
+
+## Pull Requests
+
+1. Fork the repository and create a feature/fix branch.
+2. Keep changes focused and include tests for behavior changes.
+3. Ensure `make check` passes.
+4. Open a PR with:
+   - What changed
+   - Why it changed
+   - How it was tested
+
+## Reporting Bugs / Requesting Features
+
+- Bugs: <https://github.com/Dreamwalkertunes/WavFix/issues>
+- Feature requests: <https://github.com/Dreamwalkertunes/WavFix/issues>
 
 ## Code of Conduct
 
-By participating in this project, you agree to abide by the [Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project, you agree to follow the
+[Code of Conduct](CODE_OF_CONDUCT.md).

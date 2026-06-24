@@ -1,7 +1,12 @@
-appdirs==1.4.4
-customtkinter==5.1.2
-pyinstaller==5.10.1
-tkinterdnd2==0.3.0
+# Runtime/build dependencies (includes PyInstaller for packaging).
+# Development tooling (pytest/ruff/pyright) lives in pyproject optional extras: `.[dev]`.
+appdirs>=1.4.4
+customtkinter>=5.1.2
+numpy>=1.26.0
+soundfile>=0.12.1
+soxr>=0.3.7
+pyinstaller>=5.10.1
+tkinterdnd2>=0.3.0
+pyobjc-framework-Cocoa>=10.0; platform_system == 'Darwin'
 
-# WavFix requirements
-# v1.1.0
+# WavFix runtime/build requirements

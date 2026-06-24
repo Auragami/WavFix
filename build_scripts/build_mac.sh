@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (C) 2023 Dreamwalker
+# Copyright (C) 2023-2026 Auragami
  
 # This file is part of WavFix.
  
@@ -22,6 +22,22 @@ STATUS="\033[0;94m"
 WARNING="\033[0;33m"
 ERROR="\033[0;31m"
 RESET="\033[0m"
+RELEASE_PYTHON_VERSION="${RELEASE_PYTHON_VERSION:-3.12}"
+RELEASE_PYTHON_BIN="${RELEASE_PYTHON_BIN:-python${RELEASE_PYTHON_VERSION}}"
+
+validate_release_python() {
+  python - "$RELEASE_PYTHON_VERSION" <<'PY'
+import sys
+
+expected = tuple(int(part) for part in sys.argv[1].split("."))
+actual = sys.version_info[: len(expected)]
+if actual != expected:
+    raise SystemExit(
+        f"Release artifacts must be built with Python {sys.argv[1]}; "
+        f"active Python is {sys.version.split()[0]}."
+    )
+PY
+}
 
 # Parse input arguments
 USE_CONDA=0
@@ -53,14 +69,19 @@ if [ -z "$VIRTUAL_ENV" ] && [ -z "$CONDA_PREFIX" ]; then
   # Create and activate a virtual environment
   if [ $USE_CONDA -eq 1 ]; then
     echo -e "${STATUS}Building Conda environment...${RESET}"
-    conda create -y -n wavfix_env python=3.11
+    conda create -y -n wavfix_env "python=${RELEASE_PYTHON_VERSION}"
     eval "$(conda shell.bash hook)"
     conda activate wavfix_env
     echo -e "${WARNING}Python path: $(which python)${RESET}"
     echo -e "${WARNING}Conda environment path: $CONDA_PREFIX${RESET}"
   else
     echo -e "${STATUS}Building virtual environment...${RESET}"
-    python3 -m venv venv
+    if ! command -v "$RELEASE_PYTHON_BIN" >/dev/null 2>&1; then
+      echo -e "${ERROR}${RELEASE_PYTHON_BIN} was not found.${RESET}" >&2
+      echo -e "${ERROR}Install Python ${RELEASE_PYTHON_VERSION} or set RELEASE_PYTHON_BIN to its executable.${RESET}" >&2
+      exit 1
+    fi
+    "$RELEASE_PYTHON_BIN" -m venv venv
     source venv/bin/activate
     echo -e "${WARNING}Python path: $(which python)${RESET}"
     echo -e "${WARNING}Virtual environment path: $VIRTUAL_ENV${RESET}"
@@ -76,6 +97,8 @@ elif [ -n "$CONDA_PREFIX" ]; then
   echo -e "${IMPORTANT}Proceeding using the active Conda environment: $CONDA_PREFIX${RESET}"
 fi
 
+validate_release_python
+echo -e "${IMPORTANT}Release Python version: $(python --version 2>&1)${RESET}"
 
 # Install dependencies
 echo -e "${STATUS}Installing dependencies...${RESET}"
@@ -88,19 +111,19 @@ if [ $USE_FREEZE -eq 1 ]; then
   pip install cx_freeze
   if [ $USE_VENV -eq 1 ]; then
     echo -e "${WARNING}Using active virtual environment to source Python standard libraries...${RESET}"
-    python3 src/setup.py -v bdist_mac
+    python src/setup.py -v bdist_mac
   else
     echo -e "${WARNING}Using system path to source Python standard libraries...${RESET}"
-    python3 src/setup.py bdist_mac
+    python src/setup.py bdist_mac
   fi
 elif [ $USE_VENV -eq 1 ]; then
   echo -e "${STATUS}Building WavFix with PyInstaller...${RESET}"
   echo -e "${WARNING}Using active virtual environment to source Python standard libraries...${RESET}"
-  USE_VENV=1 pyinstaller src/WavFix.spec
+  USE_VENV=1 python -m PyInstaller src/WavFix.spec
 else
   echo -e "${STATUS}Building WavFix with PyInstaller...${RESET}"
   echo -e "${WARNING}Using system path to source Python standard libraries...${RESET}"
-  pyinstaller src/WavFix.spec
+  python -m PyInstaller src/WavFix.spec
 fi
 
 
@@ -131,5 +154,5 @@ fi
 echo -e "${IMPORTANT}Build complete!${RESET}"
 echo -e "${IMPORTANT}Compiled app is located in: "build/WavFix.app"${RESET}"
 
-# WavFix build script, by Dreamwalker
-# v1.1.0
+# WavFix build script, by Auragami
+# v2.0.0
